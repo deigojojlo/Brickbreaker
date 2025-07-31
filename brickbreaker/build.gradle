@@ -1,0 +1,55 @@
+plugins {
+  id 'application'
+  id 'org.openjfx.javafxplugin' version '0.1.0'
+}
+
+repositories {
+    mavenCentral()
+}
+
+javafx {
+    version = "21"
+    modules = [ 'javafx.controls', 'javafx.fxml', 'javafx.media' ]
+}
+
+application {
+    mainClass = 'org.openjfx.BrickBreaker'
+}
+dependencies {
+    // Dépendances principales
+    implementation 'com.google.code.gson:gson:2.9.1'
+
+    // JUnit 5
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.10.0'
+
+    // Mockito core
+    testImplementation 'org.mockito:mockito-core:5.5.0'
+
+    // Mockito-inline (version compatible)
+    testImplementation 'org.mockito:mockito-inline:5.2.0'
+
+    // AssertJ (pour des assertions avancées)
+    testImplementation 'org.assertj:assertj-core:3.24.2'
+
+    // TestFX (pour les tests d'interface graphique JavaFX)
+    testImplementation 'org.testfx:testfx-core:4.0.16-alpha'
+    testImplementation 'org.testfx:testfx-junit5:4.0.16-alpha'
+
+    // PowerMock (pour moquer des méthodes statiques)
+    testImplementation 'org.powermock:powermock-api-mockito2:2.0.9'
+    testImplementation 'org.powermock:powermock-module-junit4:2.0.9'
+}
+
+tasks.test {
+    useJUnitPlatform()
+    jvmArgs '-Djava.awt.headless=true'
+
+}
+test {
+   testLogging {
+       events "failed", "passed", "skipped", "standardError","standardOut", "started"
+   }
+   maxParallelForks = 10;
+    useJUnitPlatform()
+    jvmArgs '-Djava.awt.headless=true'
+}

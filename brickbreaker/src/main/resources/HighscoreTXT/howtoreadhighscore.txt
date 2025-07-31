@@ -1,0 +1,1 @@
+lvl(0 si rush) gamemode (false = solo, true = multi) score name
